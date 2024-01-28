@@ -1,0 +1,38 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container">
+    <h1>Question!</h1>
+
+    <p><%= it.question.question_text %></p>
+
+    <% if (it.options && it.options.length > 0) { %>
+
+        <% it.options.forEach(option => { %>
+            <div style="display: flex; align-items: center; margin-right: 10px;">
+                <li><%=option.option_text%>: <%=option.is_correct%></li>
+                <form style="margin-left: 20px" method="POST" action="/topics/<%=it.topic_id%>/questions/<%=it.question.id%>/options/<%=option.id%>/delete">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        <% }); %>
+
+    <% } else { %>
+        <form method="POST" action="/topics/<%=it.topic_id%>/questions/<%=it.question.id%>/delete">
+            <button type="submit">Delete question</button>
+        </form>
+    <% } %>
+
+    <h2>Adding a question option</h2>
+
+    <form method="POST" action="/topics/<%=it.topic_id%>/questions/<%=it.question.id%>/options">
+        <label for="option_text">Option:</label><br/>
+        <%~ includeFile('./partials/error.eta', { errors: it.validationErrors, attribute: 'option_text'}) %>
+        <div style="display: flex; align-items: center; margin-right: 10px;">
+            <input type="checkbox" name="is_correct"/><br/>
+            <input style="margin-left: 20px; margin-right: 20px" type="textarea" name="option_text" value="<%= it.option_text ? it.option_text : '' %>"/><br/>
+            <button type="submit">Submit option!</button>
+        </div>
+    </form>
+</div>

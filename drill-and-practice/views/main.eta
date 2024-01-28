@@ -1,0 +1,38 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container-sm">
+    <header>
+        <h1>Learned content practicing</h1>
+    </header>
+
+    <section class="hero">
+        <p>
+A web application that is used for repeated practice of learned content, where users can answer multiple-choice questions from different topics provided by the application. 
+Also, the application provides an API for retrieving and answering random questions.        
+        </p>
+    </section>
+
+    <section class="statistics">
+        <div class="row">
+            <div class="col">
+                <h3>Total Topics</h3>
+                <p><%=it.topics%></p>
+            </div>
+            <div class="col">
+                <h3>Total Questions</h3>
+                <p><%=it.questions%></p>
+            </div>
+            <div class="col">
+                <h3>Total Question Answers</h3>
+                <p><%=it.answers%></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <a href="/auth/register" class="paper-btn">Register</a>
+        <a href="/auth/login" class="paper-btn">Login</a>
+    </section>
+</div>

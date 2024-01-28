@@ -1,0 +1,24 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container">
+    <h2>Pick a topic to start quiz</h2>
+
+    <% if (it.topics && it.topics.length > 0) { %>
+        <ul>
+            <% it.topics.forEach(topic => { %>
+                <li>
+                    <a href="/quiz/<%= topic.id %>"><%= topic.name %></a>
+                </li>
+                <% if (it.error && it.error[topic.id]) { %>
+                    <p><%=it.error[topic.id]%></p>
+                <% } %>
+            <% }); %>
+        </ul>
+    <% } else { %>
+
+    <p>None available.</p>
+
+    <% } %>
+</div>

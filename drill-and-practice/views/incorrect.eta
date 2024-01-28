@@ -1,0 +1,11 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container">
+    <h2>Incorrect!</h2>
+
+    <p>The correct option was <%=it.correct_answer%></p>
+
+    <a href="/quiz/<%= it.topic_id %>/">Next question</a>
+</div>

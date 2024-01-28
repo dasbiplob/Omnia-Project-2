@@ -1,0 +1,10 @@
+<div class="container">
+    <nav class="border fixed">
+        <div class="collapsible">
+            <ul class="inline">
+                <li><a href="/topics">Topics</a></li>
+                <li><a href="/quiz">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

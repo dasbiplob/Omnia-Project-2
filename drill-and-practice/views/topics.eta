@@ -1,0 +1,45 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container">
+    <h1>Topics!</h1>
+
+    <h2>Current topics</h2>
+
+    <% if (it.topics && it.topics.length > 0) { %>
+        <ul>
+            <% it.topics.forEach(topic => { %>
+                <div style="margin: 20px">
+                    <div style="display: inline-block">                    
+                        <li>
+                            <a href="/topics/<%= topic.id %>" style="display: inline-block"><%= topic.name %></a>
+                        </li>
+                    </div>
+                    <div style="display: inline-block">                    
+                        <% if (it.isAdmin) { %>
+                            <form method="POST" action="/topics/<%=topic.id%>/delete" style="display: inline-block">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
+        </ul>
+    <% } else { %>
+
+    <p>None available.</p>
+
+    <% } %>
+
+    <% if (it.isAdmin) { %>
+        <h2>Add a topic!</h2>
+
+        <form method="POST" action="/topics">
+            <label for="name">Name:</label><br/>
+            <%~ includeFile('./partials/error.eta', { errors: it.validationErrors, attribute: 'name'}) %>
+            <input type="text" name="name" value="<%= it.name ? it.name : "" %>" /><br/>
+            <button type="submit">Submit topic!</button>
+        </form>
+    <% } %>
+</div>

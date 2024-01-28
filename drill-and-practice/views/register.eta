@@ -1,0 +1,17 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container">
+    <h1>Register!</h1>
+
+    <form method="POST" action="/auth/register">
+        <label for="email">Email:</label><br/>
+        <%~ includeFile('./partials/error.eta', { errors: it.validationErrors, attribute: 'email'}) %>
+        <input type="email" name="email" value="<%= it.email ? it.email : "" %>" /><br/>
+        <label for="password">Password:</label><br/>
+        <%~ includeFile('./partials/error.eta', { errors: it.validationErrors, attribute: 'password'}) %>
+        <input type="password" name="password" value="<%= it.password ? it.password : "" %>" /><br/>
+        <button type="submit">Register!</button>
+    </form>
+</div>

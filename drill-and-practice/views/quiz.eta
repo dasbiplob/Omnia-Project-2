@@ -1,0 +1,25 @@
+<% layout("./layouts/layout.eta") %>
+
+<%~ includeFile("./partials/navbar.eta") %>
+
+<div class="container">
+    <h2><%=it.question.question_text%></h2>
+
+    <% if (it.options && it.options.length > 0) { %>
+        <ul>
+            <% it.options.forEach(option => { %>
+                <div style="display: flex; align-items: center; margin-right: 10px;">
+                    <li><%= option.option_text %></li>
+                    <form style="margin-left: 20px" method="POST" action="/quiz/<%=it.topic_id%>/questions/<%=it.question.id%>/options/<%=option.id%>">
+                        <button type="submit">Choose</button>
+                    </form>
+                </div>
+            <% }); %>
+        </ul>
+
+    <% } else { %>
+
+    <p>No answer option available. Please add it in topic questions!</p>
+
+    <% } %>
+</div>
